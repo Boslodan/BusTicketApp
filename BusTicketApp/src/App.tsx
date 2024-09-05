@@ -30,21 +30,17 @@ const App: React.FC = () => (
   <IonApp>
     <IonReactRouter>
       <IonRouterOutlet>
-        {/* Primer novih ruta; promeni rute prema stranicama koje želiš */}
         <Route exact path="/home">
-          {/* Ovde možeš staviti svoju početnu stranicu */}
           <Home />
         </Route>
         <Route exact path="/login">
-          {/* Dodaj stranicu za prijavu */}
           <Login />
         </Route>
         <Route exact path="/register">
-          {/* Dodaj stranicu za registraciju */}
           <Register />
         </Route>
         <Route exact path="/">
-          <Redirect to="/home" />
+          <Redirect to="/login" />
         </Route>
       </IonRouterOutlet>
     </IonReactRouter>
