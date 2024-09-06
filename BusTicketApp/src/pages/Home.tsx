@@ -16,8 +16,8 @@ const Home: React.FC = () => {
   const [searchText, setSearchText] = useState('');
 
 
-  const handleBuyTicket = (ticketId: number) => {
-    alert(`Ticket ${ticketId} purchased successfully!`);
+  const handleBuyTicket = (ticketRoute: String) => {
+    alert(`Karta ${ticketRoute} uspesno kupljena!`);
   };
 
   const handleNavigation = (path: string) => {
@@ -33,6 +33,9 @@ const Home: React.FC = () => {
       <IonMenu side="start" contentId="main-content">
         <IonContent>
           <IonList>
+          <IonItem button onClick={() => handleNavigation('/home')}>
+              <IonLabel>Kupovina karata</IonLabel>
+            </IonItem>
             <IonItem button onClick={() => handleNavigation('/myTickets')}>
               <IonLabel>Moje karte</IonLabel>
             </IonItem>
@@ -80,7 +83,7 @@ const Home: React.FC = () => {
                           <IonButton
                             slot="end"
                             color="primary"
-                            onClick={() => handleBuyTicket(ticket.id)}
+                            onClick={() => handleBuyTicket(ticket.route)}
                           >
                             Kupi
                           </IonButton>
