@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {IonPage,IonHeader,IonToolbar,IonTitle,IonContent,IonItem,IonLabel,IonInput,IonButton,IonGrid,IonRow,IonCol,IonText,} from '@ionic/react';
+import {IonPage,IonHeader,IonToolbar,IonTitle,IonContent,IonItem,IonLabel,IonInput,IonButton,IonGrid,IonRow,IonCol,IonText,IonToast,} from '@ionic/react';
 import { useHistory } from 'react-router-dom';
 import './Register.css';
 
@@ -7,10 +7,42 @@ const Register: React.FC = () => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [emailError, setEmailError] = useState('');
+  const [passwordError, setPasswordError] = useState('');
+  const [showSuccessToast, setShowSuccessToast] = useState(false);
   const history = useHistory();
 
+
+
+  const validateEmail = (email: string) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+
   const handleRegister = () => {
-    history.push('/login');
+    let isValid = true;
+
+    if (!validateEmail(email)) {
+      setEmailError('Email mora biti u ispravnom formatu.');
+      isValid = false;
+    } else {
+      setEmailError('');
+    }
+
+    if (password.length < 8) {
+      setPasswordError('Lozinka mora imati minimum 8 karaktera.');
+      isValid = false;
+    } else {
+      setPasswordError('');
+    }
+
+    if (isValid) {
+      setShowSuccessToast(true);
+      setTimeout(() => {
+        history.push('/login');
+      }, 1500); 
+    }
   };
 
   return (
@@ -49,6 +81,11 @@ const Register: React.FC = () => {
                     onIonChange={(e) => setEmail(e.detail.value!)}
                   />
                 </IonItem>
+                {emailError && (
+                  <IonText color="danger">
+                    <p className="error-message">{emailError}</p>
+                  </IonText>
+                )}
               </IonCol>
             </IonRow>
             <IonRow>
@@ -61,6 +98,11 @@ const Register: React.FC = () => {
                     onIonChange={(e) => setPassword(e.detail.value!)}
                   />
                 </IonItem>
+                {passwordError && (
+                  <IonText color="danger">
+                    <p className="error-message">{passwordError}</p>
+                  </IonText>
+                )}
               </IonCol>
             </IonRow>
             <IonRow>
@@ -85,6 +127,13 @@ const Register: React.FC = () => {
             </IonRow>
           </IonGrid>
         </div>
+        <IonToast
+          isOpen={showSuccessToast}
+          message="Registration successful!"
+          duration={1500}
+          color="success"
+          onDidDismiss={() => setShowSuccessToast(false)}
+        />
       </IonContent>
     </IonPage>
   );

@@ -64,7 +64,7 @@ const Home: React.FC = () => {
               <IonCol size="12">
                 <IonCard>
                   <IonCardHeader>
-                    <IonCardTitle>Dostupne linije</IonCardTitle>
+                    <IonCardTitle style={{display:'flex', justifyContent:'center' }}>Dostupne linije</IonCardTitle>
                   </IonCardHeader>
                   <IonCardContent>
                   <IonSearchbar
