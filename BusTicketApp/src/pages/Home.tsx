@@ -30,7 +30,7 @@ const Home: React.FC = () => {
 
   return (
     <>
-      <IonMenu side="start" contentId="main-content">
+      <IonMenu side="start" contentId="main-content"  type="overlay" id='main-menu'>
         <IonContent>
           <IonList>
           <IonItem button onClick={() => handleNavigation('/home')}>
@@ -51,11 +51,11 @@ const Home: React.FC = () => {
 
       <IonPage id="main-content">
         <IonHeader>
-          <IonToolbar style={{ '--background': '#1F2833', '--color': '#66FCF1' }}>
+          <IonToolbar style={{ '--background': '#1F2833', '--color': '#66FCF1', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
             <IonButtons slot="start">
               <IonMenuButton />
             </IonButtons>
-            <IonTitle>BusTickets</IonTitle>
+            <IonTitle >BusTickets</IonTitle>
           </IonToolbar>
         </IonHeader>
         <IonContent className="ion-padding" style={{ '--background': '#66FCF1' }}>

@@ -4,6 +4,8 @@ import { IonReactRouter } from '@ionic/react-router';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import MyTickets from './pages/MyTickets';
+import MyAccount from './pages/MyAccount';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -23,7 +25,7 @@ import '@ionic/react/css/display.css';
 
 /* Theme variables */
 import './theme/variables.css';
-import MyTickets from './pages/MyTickets';
+
 
 setupIonicReact();
 
@@ -42,6 +44,9 @@ const App: React.FC = () => (
         </Route>
         <Route exact path="/MyTickets">
           <MyTickets />
+        </Route>
+        <Route exact path="/MyAccount">
+          <MyAccount />
         </Route>
         <Route exact path="/">
           <Redirect to="/login" />

@@ -23,32 +23,13 @@ const MyTickets: React.FC = () => {
 
   return (
 
-    <>
-    <IonMenu side="start" contentId="main-content">
-        <IonContent>
-          <IonList>
-          <IonItem button onClick={() => handleNavigation('/home')}>
-              <IonLabel>Kupovina karata</IonLabel>
-            </IonItem>
-            <IonItem button onClick={() => handleNavigation('/myTickets')}>
-              <IonLabel>Moje karte</IonLabel>
-            </IonItem>
-            <IonItem button onClick={() => handleNavigation('/myAccount')}>
-              <IonLabel>Moj nalog</IonLabel>
-            </IonItem>
-            <IonItem button onClick={() => handleNavigation('/login')}>
-              <IonLabel>Odjava</IonLabel>
-            </IonItem>
-          </IonList>
-        </IonContent>
-    </IonMenu>
 
-    <IonPage id="main-content">
+    <IonPage>
       <IonHeader>
-        <IonToolbar style={{ '--background': '#1F2833', '--color': '#66FCF1' }}>
-        <IonButtons slot="start">
+      <IonToolbar style={{ '--background': '#1F2833', '--color': '#66FCF1', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+      <IonButtons slot="start">
               <IonMenuButton />
-            </IonButtons>
+        </IonButtons>
           <IonTitle>BusTickets</IonTitle>
         </IonToolbar>
       </IonHeader>
@@ -79,7 +60,6 @@ const MyTickets: React.FC = () => {
         </IonGrid>
       </IonContent>
     </IonPage>
-    </>
   );
 };
 

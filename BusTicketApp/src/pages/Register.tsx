@@ -16,8 +16,8 @@ const Register: React.FC = () => {
   return (
     <IonPage>
       <IonHeader>
-        <IonToolbar style={{ '--background': '#1F2833', '--color': '#66FCF1' }}>
-          <IonTitle>BusTickets</IonTitle>
+      <IonToolbar style={{ '--background': '#1F2833', '--color': '#66FCF1', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+      <IonTitle>BusTickets</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent className="ion-padding" style={{ '--background': '#66FCF1' }}>
