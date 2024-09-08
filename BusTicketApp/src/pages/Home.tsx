@@ -5,10 +5,10 @@ import { useHistory } from 'react-router-dom';
 
 const Home: React.FC = () => {
     const [tickets, setTickets] = useState([
-        { id: 1, route: 'Beograd -> Novi sad', price: 1200, date:'24.10.2024' },
-        { id: 2, route: 'Beograd -> Nis', price: 1700, date:'12.10.2024' },
-        { id: 3, route: 'Novi sad -> Subotica', price: 900, date:'03.10.2024' },
-        { id: 4, route: 'Beograd -> Budimpesta', price: 3000, date:'22.12.2024' }
+        { id: 1, route: 'Beograd => Novi sad', price: 1200, date:'24.10.2024' },
+        { id: 2, route: 'Beograd => Nis', price: 1700, date:'12.10.2024' },
+        { id: 3, route: 'Novi sad => Subotica', price: 900, date:'03.10.2024' },
+        { id: 4, route: 'Beograd => Budimpesta', price: 3000, date:'22.12.2024' }
       ]);
 
       

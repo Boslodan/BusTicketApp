@@ -52,7 +52,7 @@ const Register: React.FC = () => {
       <IonTitle>BusTickets</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent className="ion-padding" style={{ '--background': '#66FCF1' }}>
+      <IonContent className="ion-padding" style={{ '--background': '#418988' }}>
         <div className="register-container">
           <IonText className="register-text">
             <h2>Create your account!</h2>
@@ -61,8 +61,8 @@ const Register: React.FC = () => {
           <IonGrid>
             <IonRow>
               <IonCol size="12">
-                <IonItem>
-                  <IonLabel position="floating">Username</IonLabel>
+                <IonItem className='custom-item'>
+                  <IonLabel position="stacked" className='custom-label'>Username</IonLabel>
                   <IonInput
                     type="text"
                     value={username}
@@ -73,8 +73,8 @@ const Register: React.FC = () => {
             </IonRow>
             <IonRow>
               <IonCol size="12">
-                <IonItem>
-                  <IonLabel position="floating">Email</IonLabel>
+                <IonItem className='custom-item'>
+                  <IonLabel position="stacked" className='custom-label'>Email</IonLabel>
                   <IonInput
                     type="email"
                     value={email}
@@ -90,8 +90,8 @@ const Register: React.FC = () => {
             </IonRow>
             <IonRow>
               <IonCol size="12">
-                <IonItem>
-                  <IonLabel position="floating">Password</IonLabel>
+                <IonItem className='custom-item'>
+                  <IonLabel position="stacked" className='custom-label'>Password</IonLabel>
                   <IonInput
                     type="password"
                     value={password}

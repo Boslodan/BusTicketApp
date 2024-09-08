@@ -27,30 +27,36 @@ const Login: React.FC = () => {
             <p>Please login to continue.</p>
         </IonText>
         <IonGrid>
-          <IonRow>
-            <IonCol size="12">
-              <IonItem>
-                <IonLabel position="floating">Email</IonLabel>
-                <IonInput
-                  type="email"
-                  value={email}
-                  onIonChange={(e) => setEmail(e.detail.value!)}
-                />
-              </IonItem>
-            </IonCol>
-          </IonRow>
-          <IonRow>
-            <IonCol size="12">
-              <IonItem>
-                <IonLabel position="floating">Password</IonLabel>
-                <IonInput
-                  type="password"
-                  value={password}
-                  onIonChange={(e) => setPassword(e.detail.value!)}
-                />
-              </IonItem>
-            </IonCol>
-          </IonRow>
+        <IonRow>
+              <IonCol size="12">
+                <IonItem className="custom-item">
+                  <IonLabel position="stacked" className="custom-label">
+                    Email
+                  </IonLabel>
+                  <IonInput
+                    type="email"
+                    value={email}
+                    onIonChange={(e) => setEmail(e.detail.value!)}
+                    className="custom-input"
+                  />
+                </IonItem>
+              </IonCol>
+            </IonRow>
+            <IonRow>
+              <IonCol size="12">
+                <IonItem className="custom-item">
+                  <IonLabel position="stacked" className="custom-label">
+                    Password
+                  </IonLabel>
+                  <IonInput
+                    type="password"
+                    value={password}
+                    onIonChange={(e) => setPassword(e.detail.value!)}
+                    className="custom-input"
+                  />
+                </IonItem>
+              </IonCol>
+            </IonRow>
           <IonRow>
             <IonCol>
               <IonButton expand="block" onClick={handleLogin}>
