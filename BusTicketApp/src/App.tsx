@@ -6,6 +6,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import MyTickets from './pages/MyTickets';
 import MyAccount from './pages/MyAccount';
+import TicketDetails from './pages/TicketDetail';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -47,6 +48,9 @@ const App: React.FC = () => (
         </Route>
         <Route exact path="/MyAccount">
           <MyAccount />
+        </Route>
+        <Route exact path="/ticket/:ticketId">
+          <TicketDetails />
         </Route>
         <Route exact path="/">
           <Redirect to="/login" />

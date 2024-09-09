@@ -31,9 +31,10 @@ const Home: React.FC = () => {
   }, []);
   
 
-  const handleBuyTicket = (ticketRoute: String) => {
-    alert(`Karta ${ticketRoute} uspesno kupljena!`);
+  const handleBuyTicket = (ticketId: string) => {
+    history.push(`/ticket/${ticketId}`);
   };
+  
 
   const handleNavigation = (path: string) => {
     history.push(path);
@@ -105,7 +106,7 @@ const Home: React.FC = () => {
                           <IonButton
                             slot="end"
                             color="primary"
-                            onClick={() => handleBuyTicket(ticket.route)}
+                            onClick={() => handleBuyTicket(ticket.id)}
                           >
                             Kupi
                           </IonButton>
