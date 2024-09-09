@@ -60,8 +60,8 @@ const Register: React.FC = () => {
       <IonHeader>
         <IonToolbar
           style={{
-            '--background': '#1F2833',
-            '--color': '#66FCF1',
+            '--background': '#787878',
+            '--color': '#ffffff',
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
@@ -70,7 +70,7 @@ const Register: React.FC = () => {
           <IonTitle>BusTickets</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent className="ion-padding" style={{ '--background': '#418988' }}>
+      <IonContent className="ion-padding" style={{ '--background': '#ffffff' }}>
         <div className="register-container">
           <IonText className="register-text">
             <h2>Create your account!</h2>

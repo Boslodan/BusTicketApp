@@ -56,11 +56,11 @@ const Login: React.FC = () => {
   return (
     <IonPage>
       <IonHeader>
-        <IonToolbar style={{ '--background': '#1F2833', '--color': '#66FCF1' }}>
-          <IonTitle>BusTickets</IonTitle>
+      <IonToolbar style={{ '--background': '#787878', '--color': '#ffffff', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+      <IonTitle>BusTickets</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent className="ion-padding" style={{ '--background': '#66FCF1' }}>
+      <IonContent className="ion-padding" style={{ '--background': '#ffffff' }}>
         <div className="login-container">
           <IonText className="welcome-text">
             <h2>Welcome, glad to see you!</h2>

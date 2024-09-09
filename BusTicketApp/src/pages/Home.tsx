@@ -74,14 +74,14 @@ const Home: React.FC = () => {
 
       <IonPage id="main-content">
         <IonHeader>
-          <IonToolbar style={{ '--background': '#1F2833', '--color': '#66FCF1', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+          <IonToolbar style={{ '--background': '#ffffff', '--color': '#000000', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
             <IonButtons slot="start">
               <IonMenuButton />
             </IonButtons>
             <IonTitle >BusTickets</IonTitle>
           </IonToolbar>
         </IonHeader>
-        <IonContent className="ion-padding" style={{ '--background': '#66FCF1' }}>
+        <IonContent className="ion-padding" style={{ '--background': '#787878 ' }}>
           <IonGrid>
             <IonRow>
               <IonCol size="12">
