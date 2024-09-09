@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import {IonPage,IonHeader,IonToolbar,IonTitle,IonContent,IonItem,IonLabel,IonInput,IonButton,IonGrid,IonRow,IonCol,IonText,IonToast,} from '@ionic/react';
 import { useHistory } from 'react-router-dom';
+import { registerUser } from '../services/firebaseService';
 import './Register.css';
 
 const Register: React.FC = () => {
@@ -10,6 +11,7 @@ const Register: React.FC = () => {
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
   const [showSuccessToast, setShowSuccessToast] = useState(false);
+  const [showErrorToast, setShowErrorToast] = useState(false);
   const history = useHistory();
 
 
@@ -20,7 +22,7 @@ const Register: React.FC = () => {
   };
 
 
-  const handleRegister = () => {
+  const handleRegister = async () => {
     let isValid = true;
 
     if (!validateEmail(email)) {
@@ -38,18 +40,34 @@ const Register: React.FC = () => {
     }
 
     if (isValid) {
-      setShowSuccessToast(true);
-      setTimeout(() => {
-        history.push('/login');
-      }, 1500); 
+      try {
+        const result = await registerUser(email, password);
+        console.log('Registracija uspešna:', result);
+        
+        setShowSuccessToast(true);
+        setTimeout(() => {
+          history.push('/login');
+        }, 1500);
+      } catch (error) {
+        console.error('Greška pri registraciji:', error);
+        setShowErrorToast(true);
+      }
     }
   };
 
   return (
     <IonPage>
       <IonHeader>
-      <IonToolbar style={{ '--background': '#1F2833', '--color': '#66FCF1', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-      <IonTitle>BusTickets</IonTitle>
+        <IonToolbar
+          style={{
+            '--background': '#1F2833',
+            '--color': '#66FCF1',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <IonTitle>BusTickets</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent className="ion-padding" style={{ '--background': '#418988' }}>
@@ -61,8 +79,10 @@ const Register: React.FC = () => {
           <IonGrid>
             <IonRow>
               <IonCol size="12">
-                <IonItem className='custom-item'>
-                  <IonLabel position="stacked" className='custom-label'>Username</IonLabel>
+                <IonItem className="custom-item">
+                  <IonLabel position="stacked" className="custom-label">
+                    Username
+                  </IonLabel>
                   <IonInput
                     type="text"
                     value={username}
@@ -73,8 +93,10 @@ const Register: React.FC = () => {
             </IonRow>
             <IonRow>
               <IonCol size="12">
-                <IonItem className='custom-item'>
-                  <IonLabel position="stacked" className='custom-label'>Email</IonLabel>
+                <IonItem className="custom-item">
+                  <IonLabel position="stacked" className="custom-label">
+                    Email
+                  </IonLabel>
                   <IonInput
                     type="email"
                     value={email}
@@ -90,8 +112,10 @@ const Register: React.FC = () => {
             </IonRow>
             <IonRow>
               <IonCol size="12">
-                <IonItem className='custom-item'>
-                  <IonLabel position="stacked" className='custom-label'>Password</IonLabel>
+                <IonItem className="custom-item">
+                  <IonLabel position="stacked" className="custom-label">
+                    Password
+                  </IonLabel>
                   <IonInput
                     type="password"
                     value={password}
@@ -133,6 +157,13 @@ const Register: React.FC = () => {
           duration={1500}
           color="success"
           onDidDismiss={() => setShowSuccessToast(false)}
+        />
+        <IonToast
+          isOpen={showErrorToast}
+          message="Registration failed. Please try again."
+          duration={1500}
+          color="danger"
+          onDidDismiss={() => setShowErrorToast(false)}
         />
       </IonContent>
     </IonPage>

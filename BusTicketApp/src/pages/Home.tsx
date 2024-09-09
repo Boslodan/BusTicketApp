@@ -1,20 +1,35 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {IonPage,IonHeader,IonToolbar,IonTitle,IonContent,IonList,IonItem,IonLabel,IonButton,IonGrid,IonRow,IonCol,IonCard,IonCardHeader,IonCardTitle,IonCardContent,IonMenu,IonMenuButton,IonButtons,IonSearchbar,} from '@ionic/react';
 import { useHistory } from 'react-router-dom';
+import { TicketData } from '../services/firebaseService';
+import { getTickets } from '../services/firebaseService';
 //import './Home.css';
 
 const Home: React.FC = () => {
-    const [tickets, setTickets] = useState([
-        { id: 1, route: 'Beograd => Novi sad', price: 1200, date:'24.10.2024' },
-        { id: 2, route: 'Beograd => Nis', price: 1700, date:'12.10.2024' },
-        { id: 3, route: 'Novi sad => Subotica', price: 900, date:'03.10.2024' },
-        { id: 4, route: 'Beograd => Budimpesta', price: 3000, date:'22.12.2024' }
-      ]);
-
-      
+  const [tickets, setTickets] = useState<TicketData[]>([]);
   const history = useHistory();
   const [searchText, setSearchText] = useState('');
 
+  useEffect(() => {
+    const fetchTickets = async () => {
+      const token = localStorage.getItem('authToken');
+      if (token) {
+        try {
+          const fetchedTickets = await getTickets(token);
+          const ticketsArray = Object.keys(fetchedTickets).map(key => ({
+            ...fetchedTickets[key] as TicketData,
+            id: key
+          }));
+          setTickets(ticketsArray);
+        } catch (error) {
+          console.error('Greška pri učitavanju karata: ', error);
+        }
+      }
+    };
+  
+    fetchTickets();
+  }, []);
+  
 
   const handleBuyTicket = (ticketRoute: String) => {
     alert(`Karta ${ticketRoute} uspesno kupljena!`);
@@ -22,6 +37,13 @@ const Home: React.FC = () => {
 
   const handleNavigation = (path: string) => {
     history.push(path);
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem('authToken');
+    console.log('Token obrisan');
+
+    history.push('/login');
   };
 
   const filteredTickets = tickets.filter((ticket) =>
@@ -42,7 +64,7 @@ const Home: React.FC = () => {
             <IonItem button onClick={() => handleNavigation('/myAccount')}>
               <IonLabel>Moj nalog</IonLabel>
             </IonItem>
-            <IonItem button onClick={() => handleNavigation('/login')}>
+            <IonItem button onClick={handleLogout}>
               <IonLabel>Odjava</IonLabel>
             </IonItem>
           </IonList>
@@ -73,11 +95,11 @@ const Home: React.FC = () => {
                       placeholder="Pretraži linije"
                     />
                     <IonList>
-                      {filteredTickets.map((ticket) => (
+                      {filteredTickets.map(ticket => (
                         <IonItem key={ticket.id}>
                           <IonLabel>
                             <h2>{ticket.route}</h2>
-                            <p>Cena: {ticket.price} Rsd</p>
+                            <p>Cena: {ticket.price} RSD</p>
                             <p>Datum: {ticket.date}</p>
                           </IonLabel>
                           <IonButton
