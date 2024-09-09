@@ -56,18 +56,6 @@ export const loginUser = async (email: string, password: string): Promise<UserRe
 };
 
 
-export const addTicket = async (token: string, ticketData: TicketData): Promise<any> => {
-  try {
-    const response = await axios.post(
-      `${DATABASE_URL}/tickets.json?auth=${token}`,
-      ticketData
-    );
-    return response.data;
-  } catch (error) {
-    console.error('Greška pri dodavanju karte:', error);
-    throw error;
-  }
-};
 
 export const getTickets = async (token: string): Promise<Record<string, TicketData>> => {
   try {
@@ -75,18 +63,6 @@ export const getTickets = async (token: string): Promise<Record<string, TicketDa
     return response.data;
   } catch (error) {
     console.error('Greška pri čitanju karata:', error);
-    throw error;
-  }
-};
-
-export const deleteTicket = async (token: string, ticketId: string): Promise<any> => {
-  try {
-    const response = await axios.delete(
-      `${DATABASE_URL}/tickets/${ticketId}.json?auth=${token}`
-    );
-    return response.data;
-  } catch (error) {
-    console.error('Greška pri brisanju karte:', error);
     throw error;
   }
 };

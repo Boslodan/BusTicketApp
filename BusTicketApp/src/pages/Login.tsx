@@ -16,7 +16,7 @@ import {
   IonToast,
 } from '@ionic/react';
 import { useHistory } from 'react-router-dom';
-import { loginUser } from '../services/firebaseService'; // Uvoz funkcije za prijavu
+import { loginUser } from '../services/firebaseService';
 import './Login.css';
 
 const Login: React.FC = () => {
@@ -39,7 +39,10 @@ const Login: React.FC = () => {
     try {
       const result = await loginUser(email, password);
       console.log('Prijava uspešna:', result);
+      
       localStorage.setItem('authToken', result.idToken);
+      localStorage.setItem('userId', result.localId); 
+      
       setShowSuccessToast(true);
       setTimeout(() => {
         history.push('/home');

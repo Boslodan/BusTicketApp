@@ -1,14 +1,16 @@
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory} from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { TicketData } from '../services/firebaseService';
 import axios from 'axios';
-import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonBackButton, IonButtons } from '@ionic/react';
+import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonBackButton, IonButtons, IonButton } from '@ionic/react';
 
 const DATABASE_URL = 'https://busticketapp-f30e9-default-rtdb.europe-west1.firebasedatabase.app';
 
 const TicketDetails: React.FC = () => {
   const { ticketId } = useParams<{ ticketId: string }>();
   const [ticket, setTicket] = useState<TicketData | null>(null);
+  const history = useHistory();
+    
 
   useEffect(() => {
     const fetchTicket = async () => {
@@ -32,6 +34,31 @@ const TicketDetails: React.FC = () => {
     fetchTicket();
   }, [ticketId]);
 
+  const handleBuyTicket = async () => {
+    try {
+      const token = localStorage.getItem('authToken');
+      const userId = localStorage.getItem('userId');
+  
+      console.log('Token:', token);
+      console.log('User ID:', userId);
+  
+      if (token && userId && ticket) {
+        await axios.post(
+          `${DATABASE_URL}/users/${userId}/tickets.json?auth=${token}`,
+          ticket
+        );
+        alert('Karta je uspešno kupljena!');
+        history.push('/myTickets');
+      } else {
+        console.error('Korisnik nije autentifikovan ili podaci o karti nisu dostupni.');
+      }
+    } catch (error) {
+      console.error('Greška pri kupovini karte:', error);
+      alert('Došlo je do greške prilikom kupovine karte.');
+    }
+  };
+  
+
   if (!ticket) return <IonContent><div>Loading...</div></IonContent>;
 
   return (
@@ -52,6 +79,9 @@ const TicketDetails: React.FC = () => {
           <IonCardContent>
             <p><strong>Cena:</strong> {ticket.price} RSD</p>
             <p><strong>Datum:</strong> {ticket.date}</p>
+            <IonButton expand="full" color="success" onClick={handleBuyTicket}>
+              Kupi
+            </IonButton>
           </IonCardContent>
         </IonCard>
       </IonContent>

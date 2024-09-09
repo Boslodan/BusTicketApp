@@ -108,7 +108,7 @@ const Home: React.FC = () => {
                             color="primary"
                             onClick={() => handleBuyTicket(ticket.id)}
                           >
-                            Kupi
+                            Detalji
                           </IonButton>
                         </IonItem>
                       ))}
