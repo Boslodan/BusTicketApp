@@ -19,7 +19,7 @@
 
   .custom-item {
     --border-radius: 10px; 
-    --border-color: black; 
+    --border-color: #0054e9; 
     --border-width: 1px;
     --background: white; 
     margin-bottom: 16px;

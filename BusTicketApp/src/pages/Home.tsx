@@ -74,20 +74,20 @@ const Home: React.FC = () => {
 
       <IonPage id="main-content">
         <IonHeader>
-          <IonToolbar style={{ '--background': '#ffffff', '--color': '#000000', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+          <IonToolbar style={{ '--background': '#0054e9', '--color': '#dcdcdc', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
             <IonButtons slot="start">
-              <IonMenuButton />
+              <IonMenuButton style={{'--color':'#dcdcdc'}} />
             </IonButtons>
             <IonTitle >BusTickets</IonTitle>
           </IonToolbar>
         </IonHeader>
-        <IonContent className="ion-padding" style={{ '--background': '#787878 ' }}>
+        <IonContent className="ion-padding" style={{ '--background': '#dcdcdc' }}>
           <IonGrid>
             <IonRow>
               <IonCol size="12">
                 <IonCard>
-                  <IonCardHeader>
-                    <IonCardTitle style={{display:'flex', justifyContent:'center' }}>Dostupne linije</IonCardTitle>
+                  <IonCardHeader style={{'--background':'#0054e9'}}>
+                    <IonCardTitle style={{'--color':'#dcdcdc',display:'flex', justifyContent:'center' }}>Dostupne linije</IonCardTitle>
                   </IonCardHeader>
                   <IonCardContent>
                   <IonSearchbar

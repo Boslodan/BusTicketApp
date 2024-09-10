@@ -17,14 +17,14 @@ const MyAccount: React.FC = () => {
   return (
     <IonPage>
       <IonHeader>
-          <IonToolbar style={{ '--background': '#ffffff', '--color': '#000000', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+          <IonToolbar style={{ '--background': '#0054e9', '--color': '#dcdcdc', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
             <IonButtons slot="start">
-              <IonMenuButton />
+              <IonMenuButton style={{'--color':'#dcdcdc'}} />
             </IonButtons>
             <IonTitle >Moj nalog</IonTitle>
           </IonToolbar>
         </IonHeader>
-      <IonContent className="ion-padding">
+      <IonContent className="ion-padding"  style={{'--background':'#dcdcdc'}}>
         <IonGrid>
           <IonRow className="ion-align-items-center ion-justify-content-center">
             <IonCol size="12" className="ion-text-center">

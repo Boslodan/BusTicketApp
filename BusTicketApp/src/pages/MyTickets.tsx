@@ -55,14 +55,14 @@ const MyTickets: React.FC = () => {
   return (
     <IonPage>
       <IonHeader>
-          <IonToolbar style={{ '--background': '#ffffff', '--color': '#000000', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+          <IonToolbar style={{ '--background': '#0054e9', '--color': '#dcdcdc', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
             <IonButtons slot="start">
-              <IonMenuButton />
+              <IonMenuButton style={{'--color':'#dcdcdc'}}/>
             </IonButtons>
             <IonTitle >Moje karte</IonTitle>
           </IonToolbar>
         </IonHeader>
-      <IonContent className="ion-padding">
+      <IonContent className="ion-padding" style={{'--background':'#dcdcdc'}} >
         <IonList>
           {tickets.map(({ id, data }) => (
             <IonItem key={id}>

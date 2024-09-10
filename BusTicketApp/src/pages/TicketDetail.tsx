@@ -64,14 +64,14 @@ const TicketDetails: React.FC = () => {
   return (
     <IonPage>
       <IonHeader>
-        <IonToolbar>
+        <IonToolbar style={{ '--background': '#0054e9', '--color':'#dcdcdc' }}>
           <IonButtons slot="start">
-            <IonBackButton defaultHref="/home" />
+            <IonBackButton defaultHref="/home" style={{ '--color': '#dcdcdc' }}/>
           </IonButtons>
           <IonTitle>Detalji karte</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent className="ion-padding">
+      <IonContent className="ion-padding" style={{ '--background': '#dcdcdc' }}>
         <IonCard>
           <IonCardHeader>
             <IonCardTitle>{ticket.route}</IonCardTitle>
