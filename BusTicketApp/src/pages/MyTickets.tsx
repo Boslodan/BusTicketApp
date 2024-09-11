@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { TicketData } from '../services/firebaseService';
 import axios from 'axios';
 import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonList, IonItem, IonLabel, IonButton, IonToast, IonMenuButton, IonButtons } from '@ionic/react';
+import { useIonViewWillEnter } from '@ionic/react';
 
 const DATABASE_URL = 'https://busticketapp-f30e9-default-rtdb.europe-west1.firebasedatabase.app';
 
@@ -10,28 +11,28 @@ const MyTickets: React.FC = () => {
   const [showSuccessToast, setShowSuccessToast] = useState(false);
   const [showErrorToast, setShowErrorToast] = useState(false);
 
-  useEffect(() => {
-    const fetchMyTickets = async () => {
-      try {
-        const token = localStorage.getItem('authToken');
-        const userId = localStorage.getItem('userId');
+  const fetchMyTickets = async () => {
+    try {
+      const token = localStorage.getItem('authToken');
+      const userId = localStorage.getItem('userId');
 
-        if (token && userId) {
-          const response = await axios.get<Record<string, TicketData>>(
-            `${DATABASE_URL}/users/${userId}/tickets.json?auth=${token}`
-          );
-          const ticketsArray = Object.entries(response.data || {}).map(([id, data]) => ({ id, data }));
-          setTickets(ticketsArray);
-        } else {
-          console.error('Korisnik nije autentifikovan.');
-        }
-      } catch (error) {
-        console.error('Greška pri učitavanju karata:', error);
+      if (token && userId) {
+        const response = await axios.get<Record<string, TicketData>>(
+          `${DATABASE_URL}/users/${userId}/tickets.json?auth=${token}`
+        );
+        const ticketsArray = Object.entries(response.data || {}).map(([id, data]) => ({ id, data }));
+        setTickets(ticketsArray);
+      } else {
+        console.error('Korisnik nije autentifikovan.');
       }
-    };
+    } catch (error) {
+      console.error('Greška pri učitavanju karata:', error);
+    }
+  };
 
+  useIonViewWillEnter(() => {
     fetchMyTickets();
-  }, []);
+  });
 
   const handleCancelTicket = async (ticketId: string) => {
     try {
@@ -55,14 +56,14 @@ const MyTickets: React.FC = () => {
   return (
     <IonPage>
       <IonHeader>
-          <IonToolbar style={{ '--background': '#0054e9', '--color': '#dcdcdc', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-            <IonButtons slot="start">
-              <IonMenuButton style={{'--color':'#dcdcdc'}}/>
-            </IonButtons>
-            <IonTitle >Moje karte</IonTitle>
-          </IonToolbar>
-        </IonHeader>
-      <IonContent className="ion-padding" style={{'--background':'#dcdcdc'}} >
+        <IonToolbar style={{ '--background': '#0054e9', '--color': '#dcdcdc', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+          <IonButtons slot="start">
+            <IonMenuButton style={{ '--color': '#dcdcdc' }} />
+          </IonButtons>
+          <IonTitle>Moje karte</IonTitle>
+        </IonToolbar>
+      </IonHeader>
+      <IonContent className="ion-padding" style={{ '--background': '#dcdcdc' }}>
         <IonList>
           {tickets.map(({ id, data }) => (
             <IonItem key={id}>
