@@ -41,7 +41,7 @@ const Register: React.FC = () => {
 
     if (isValid) {
       try {
-        const result = await registerUser(email, password);
+        const result = await registerUser(email, password,username);
         console.log('Registracija uspešna:', result);
         
         setShowSuccessToast(true);

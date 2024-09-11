@@ -77,7 +77,6 @@ const Login: React.FC = () => {
                     type="password"
                     value={password}
                     onIonChange={(e) => {
-                      // Proveri da li je vrednost lozinke dostupna pre postavljanja
                       const value = e.detail.value;
                       if (value) {
                         setPassword(value);

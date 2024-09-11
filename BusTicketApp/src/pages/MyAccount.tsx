@@ -1,10 +1,41 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {IonPage,IonHeader,IonToolbar,IonTitle,IonContent,IonList,IonItem,IonLabel,IonGrid,IonRow,IonCol,IonIcon,IonButtons,IonMenuButton,} from '@ionic/react';
 import { useHistory } from 'react-router-dom';
 import { logOutOutline, createOutline } from 'ionicons/icons';
+import axios from 'axios';
+
+const DATABASE_URL = 'https://busticketapp-f30e9-default-rtdb.europe-west1.firebasedatabase.app';
+
 
 const MyAccount: React.FC = () => {
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const history = useHistory();
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      const token = localStorage.getItem('authToken');
+      const userId = localStorage.getItem('userId');
+      
+      if (token && userId) {
+        try {
+          const response = await axios.get(`${DATABASE_URL}/users/${userId}.json?auth=${token}`);
+          console.log('Fetched user data:', response.data);
+
+          const userData = response.data;
+
+          if (userData) {
+            setUsername(userData.username || 'N/A');
+            setEmail(userData.email || 'N/A');
+          }
+        } catch (error) {
+          console.error('Error fetching user data:', error);
+        }
+      }
+    };
+
+    fetchUserData();
+  }, []);
 
   const handleEditProfile = () => {
     alert('Edit profile clicked');
@@ -28,8 +59,8 @@ const MyAccount: React.FC = () => {
         <IonGrid>
           <IonRow className="ion-align-items-center ion-justify-content-center">
             <IonCol size="12" className="ion-text-center">
-              <h2>UserName</h2>
-              <p>email@example.com</p>
+              <h2>{username}</h2>
+              <p>{email}</p>
             </IonCol>
           </IonRow>
           <IonRow className="ion-padding">

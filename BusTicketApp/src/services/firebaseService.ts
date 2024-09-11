@@ -19,9 +19,9 @@ const DATABASE_URL = 'https://busticketapp-f30e9-default-rtdb.europe-west1.fireb
 
 const API_KEY = 'AIzaSyBQze2YxIUZrl5h3o2AP_O4cjgTlZGzo6A';
 
-export const registerUser = async (email: string, password: string): Promise<UserResponse> => {
+export const registerUser = async (email: string, password: string, username: string): Promise<UserResponse> => {
   try {
-    const response = await axios.post<UserResponse>(
+      const response = await axios.post<UserResponse>(
       `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${API_KEY}`,
       {
         email,
@@ -29,7 +29,19 @@ export const registerUser = async (email: string, password: string): Promise<Use
         returnSecureToken: true,
       }
     );
-    return response.data;
+
+    const userData = response.data;
+    const { localId, idToken } = userData;
+
+    await axios.put(
+      `${DATABASE_URL}/users/${localId}.json?auth=${idToken}`,
+      {
+        username: username,
+        email: email,
+      }
+    );
+
+    return userData;
   } catch (error) {
     console.error('Greška pri registraciji:', error);
     throw error;
