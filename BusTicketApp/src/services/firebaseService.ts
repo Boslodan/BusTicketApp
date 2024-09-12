@@ -78,3 +78,13 @@ export const getTickets = async (token: string): Promise<Record<string, TicketDa
     throw error;
   }
 };
+
+
+export const addTicket = async (ticket: Omit<TicketData, 'id'>, token: string): Promise<void> => {
+  try {
+    await axios.post(`${DATABASE_URL}/tickets.json?auth=${token}`, ticket);
+  } catch (error) {
+    console.error('Greška pri dodavanju karte:', error);
+    throw error;
+  }
+};

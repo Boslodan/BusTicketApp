@@ -27,6 +27,8 @@ const Login: React.FC = () => {
       
       localStorage.setItem('authToken', result.idToken);
       localStorage.setItem('userId', result.localId); 
+      localStorage.setItem('userEmail', email);
+
       
       setShowSuccessToast(true);
       setTimeout(() => {
