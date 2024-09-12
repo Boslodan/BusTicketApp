@@ -10,7 +10,8 @@ const TicketDetails: React.FC = () => {
   const { ticketId } = useParams<{ ticketId: string }>();
   const [ticket, setTicket] = useState<TicketData | null>(null);
   const history = useHistory();
-    
+  const userEmail = localStorage.getItem('userEmail');
+
 
   useEffect(() => {
     const fetchTicket = async () => {
@@ -58,6 +59,28 @@ const TicketDetails: React.FC = () => {
     }
   };
   
+  const handleDeleteTicket = async () => {
+    try {
+      const token = localStorage.getItem('authToken');
+      if (token && ticketId) {
+        await axios.delete(
+          `${DATABASE_URL}/tickets/${ticketId}.json?auth=${token}`
+        );
+        alert('Karta je uspešno obrisana!');
+        history.push('/home');
+      } else {
+        console.error('Greška pri autentifikaciji ili ID karte nije dostupan.');
+      }
+    } catch (error) {
+      console.error('Greška pri brisanju karte:', error);
+      alert('Došlo je do greške prilikom brisanja karte.');
+    }
+  };
+
+  const handleEditTicket = () => {
+    history.push(`/EditTicket/${ticketId}`);
+  };
+  
 
   if (!ticket) return <IonContent><div>Loading...</div></IonContent>;
 
@@ -79,9 +102,20 @@ const TicketDetails: React.FC = () => {
           <IonCardContent>
             <p><strong>Cena:</strong> {ticket.price} RSD</p>
             <p><strong>Datum:</strong> {ticket.date}</p>
-            <IonButton expand="full" color="success" onClick={handleBuyTicket}>
-              Kupi
-            </IonButton>
+            {userEmail === 'admin@gmail.com' ? (
+              <>
+               <IonButton expand="full" color="warning" onClick={handleEditTicket}>
+                  Izmeni
+                </IonButton>
+                <IonButton expand="full" color="danger" onClick={handleDeleteTicket}>
+                  Obriši
+                </IonButton>
+              </>
+            ) : (
+              <IonButton expand="full" color="success" onClick={handleBuyTicket}>
+                Kupi
+              </IonButton>
+            )}
           </IonCardContent>
         </IonCard>
       </IonContent>
