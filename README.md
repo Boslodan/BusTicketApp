@@ -1,65 +1,62 @@
 # BusTicketApp
 
-# BusTickets - Aplikacija za Kupovinu Autobuskih Karata
+# BusTickets - Bus Ticket Purchase Application
 
-## Opis Projekta
+## Project Description
 
-BusTickets je mobilna aplikacija razvijena u Ionic-u koristeći React za frontend i Firebase za backend. Aplikacija omogućava korisnicima da pretražuju, kupuju, pregledaju i otkazuju autobuske karte. Pored toga, aplikacija pruža korisnicima mogućnost upravljanja svojim nalozima, uključujući pregled korisničkog imena i email adrese, kao i opciju uređivanja profila.
+BusTickets is a mobile application developed in Ionic using React for the frontend and Firebase for the backend. The application allows users to search, purchase, view, and cancel bus tickets. In addition, the app provides users with account management features, including the ability to view their username and email address, as well as options to edit their profile.
 
-## Tehnologije Korišćene u Projektu
+## Technologies Used in the Project
 
-- **React**: Frontend biblioteka za izradu korisničkog interfejsa.
-- **Ionic**: Framework za izradu hibridnih mobilnih i web aplikacija sa responsivnim korisničkim iskustvom.
-- **Firebase**: Backend servis koji uključuje autentifikaciju korisnika, Realtime Database za čuvanje podataka o korisnicima i kartama, i Firebase Authentication za prijavu i registraciju korisnika.
-- **Axios**: Biblioteka za pravljenje HTTP zahteva prema Firebase-u.
+- **React**: A frontend library for building user interfaces.
+- **Ionic**: A framework for building hybrid mobile and web applications with responsive user experiences.
+- **Firebase**: A backend service that includes user authentication, Realtime Database for storing user and ticket information, and Firebase Authentication for user login and registration.
+- **Axios**: A library for making HTTP requests to Firebase.
 
-## Ključne Funkcionalnosti
+## Key Features
 
-1. **Registracija i Prijava Korisnika**:
+1. **User Registration and Login**:
 
-   - Korisnici mogu da se registruju putem email-a i lozinke, nakon čega se njihovi podaci čuvaju u Firebase Realtime Database.
-   - Prijava omogućava pristup svim funkcionalnostima aplikacije.
+   - Users can register using their email and password, after which their data is stored in Firebase Realtime Database.
+   - Login provides access to all application features.
 
-2. **Kupovina Karata**:
+2. **Ticket Purchase**:
 
-   - Prikaz dostupnih linija sa informacijama o ruti, ceni i datumu.
-   - Kupovina karata koje se čuvaju pod korisničkim nalogom.
+   - Display of available routes with information about the route, price, and date.
+   - Ticket purchase is linked to the user's account and saved there.
 
-3. **Pregled i Upravljanje Kupljenim Kartama**:
+3. **View and Manage Purchased Tickets**:
 
-   - Prikaz svih karata koje je korisnik kupio.
-   - Mogućnost otkazivanja karata direktno sa liste uz trenutno ažuriranje pregleda.
+   - Display of all tickets the user has purchased.
+   - The option to cancel tickets directly from the list, with an instant update of the view.
 
-4. **Pretraga Linija**:
+4. **Route Search**:
 
-   - Pretraga dostupnih linija pomoću pretraživača, omogućavajući korisnicima da lako pronađu željenu rutu.
+   - Search for available routes using a search tool, allowing users to easily find their desired route.
 
-5. **Upravljanje Nalogom Korisnika**:
+5. **User Account Management**:
 
-   - Pregled i prikaz korisničkog imena i email-a ulogovanog korisnika.
-   - Mogućnost uređivanja korisničkih informacija i odjave sa naloga.
+   - View and display the username and email of the logged-in user.
+   - The ability to edit user information and log out of the account.
 
-6. **Navigacija i Responsivni Interfejs**:
-   - Jednostavna navigacija putem bočnog menija sa opcijama za pregled karata, moj nalog, i odjavu.
-   - Responsivni dizajn prilagođen svim uređajima, od mobilnih telefona do desktop računara.
+6. **Navigation and Responsive Interface**:
 
-## Instalacija i Pokretanje Projekta
+   - Simple navigation through a side menu with options to view tickets, my account, and log out.
+   - A responsive design adapted to all devices, from mobile phones to desktop computers.
 
-### Pre Zahteva
+Installation and Running the Project
 
-- Node.js i npm (Node Package Manager) moraju biti instalirani na računaru.
+### Prerequisites
 
-### Koraci za Pokretanje
+- Node.js and npm (Node Package Manager) must be installed on your computer.
 
-1. **Kloniraj repozitorijum**:
+### Steps to Run
 
+1. **Clone the repository**:
    ```bash
-   git clone https://github.com/tvoj-repozitorijum/bustickets.git
+   git clone https://github.com/your-repo/bustickets.git
    cd bustickets
-
-   ```
-
-2. **Instaliraj zavisnosti**:
+2. **Install dependencies**:
    npm install
-3. **Pokreni aplikaciju**
+3. **Run the application**
    npm start
